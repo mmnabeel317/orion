@@ -34,6 +34,7 @@ def sample_dataframe():
                 "https://example.com/build/2",
                 "https://example.com/build/3",
             ],
+            "kbVersion": ["1.2.0", "1.2.0", "1.3.0"],
             "latency": [10.0, 20.0, 30.0],
             "cpu": [30.0, 20.0, 10.0],
         }
@@ -73,7 +74,7 @@ def test_generate_test_html_writes_expected_file_and_injects_click_handler(
     assert "attachClickHandlers" in html
     assert "repairProwUrl" in html
     assert "window.open(repairProwUrl(pt.customdata[0]), '_blank');" in html
-
+    assert "kube-burner-ocp" in html
 
 def test_build_test_figure_renders_changepoints_and_skips_out_of_range(sample_dataframe):
     viz_data = VizData(
